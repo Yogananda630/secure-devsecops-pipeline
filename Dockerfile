@@ -1,9 +1,9 @@
 FROM python:3.12-slim-trixie
 
-# Update system packages and fix security vulnerabilities
+# Update system packages and install the latest security fixes
 RUN apt-get update && \
+    apt-get install -y --only-upgrade openssl libssl3t64 openssl-provider-legacy && \
     apt-get upgrade -y && \
-    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
