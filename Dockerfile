@@ -1,5 +1,11 @@
 FROM python:3.12-slim
 
+# Update system packages and fix security vulnerabilities
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash appuser
 
