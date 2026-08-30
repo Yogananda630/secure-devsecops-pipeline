@@ -1,9 +1,13 @@
 FROM python:3.12-slim-trixie
 
-# Update system packages and install the latest security fixes
+# Update system packages and explicitly upgrade OpenSSL security packages
 RUN apt-get update && \
-    apt-get install -y --only-upgrade openssl libssl3t64 openssl-provider-legacy && \
     apt-get upgrade -y && \
+    apt-get install --only-upgrade -y \
+        libssl3t64 \
+        openssl \
+        openssl-provider-legacy && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
@@ -11,14 +15,19 @@ RUN useradd --create-home --shell /bin/bash appuser
 
 WORKDIR /app
 
+# Copy and install Python dependencies
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
+# Copy application
 COPY app ./app
 
+# Set permissions
 RUN chown -R appuser:appuser /app
 
+# Use non-root user
 USER appuser
 
 EXPOSE 5000
