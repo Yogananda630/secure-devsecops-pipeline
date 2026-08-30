@@ -1,0 +1,7 @@
+# Trivy Ignore File
+# Document any CVEs that cannot be immediately fixed
+# Format: CVE-XXXX or GHSA-XXXX
+
+# Add CVEs here with justification if needed
+# Example:
+# CVE-2024-XXXXX  # Reason for ignoring - planned fix in version X.Y.Z
