@@ -1,8 +1,11 @@
-FROM ubuntu:22.04  # Use the latest stable version
+FROM python:3.12-slim
 
+# Update OS packages and install system dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y <your-dependencies> && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
