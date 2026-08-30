@@ -1,0 +1,20 @@
+rules:
+
+  - id: insecure-debug-mode
+    languages:
+      - python
+    message: "Avoid enabling Flask debug mode in production."
+    severity: ERROR
+    patterns:
+      - pattern: app.run(..., debug=True, ...)
+
+  - id: hardcoded-password
+    languages:
+      - python
+    message: "Possible hardcoded password detected."
+    severity: ERROR
+    patterns:
+      - pattern: $VAR = "..."
+      - metavariable-regex:
+          metavariable: $VAR
+          regex: (?i).*password.*
