@@ -1,12 +1,8 @@
-FROM python:3.12-slim-trixie
+FROM ubuntu:22.04  # Use the latest stable version
 
-# Update system packages and explicitly upgrade OpenSSL security packages
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install --only-upgrade -y \
-        libssl3t64 \
-        openssl \
-        openssl-provider-legacy && \
+    apt-get install -y <your-dependencies> && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
