@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure DevSecOps Pipeline</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: #1e293b;
+            color: #38bdf8;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <span class="badge">DEVSECOPS PROJECT</span>
+
+    <h1>Secure CI/CD Pipeline</h1>
+
+    <p>
+        A security-focused CI/CD pipeline that automatically analyzes
+        source code, detects secrets, scans dependencies and Docker
+        images before deploying applications to AWS.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>GitHub</h3>
+            <p>Version control and source management.</p>
+        </div>
+
+        <div class="card">
+            <h3>Semgrep</h3>
+            <p>Static application security testing.</p>
+        </div>
+
+        <div class="card">
+            <h3>Gitleaks</h3>
+            <p>Secret detection.</p>
+        </div>
+
+        <div class="card">
+            <h3>Trivy</h3>
+            <p>Container vulnerability scanning.</p>
+        </div>
+
+        <div class="card">
+            <h3>Docker</h3>
+            <p>Application containerization.</p>
+        </div>
+
+        <div class="card">
+            <h3>AWS</h3>
+            <p>Cloud deployment.</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
