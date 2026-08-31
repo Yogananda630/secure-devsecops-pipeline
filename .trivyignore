@@ -2,6 +2,10 @@
 # Document any CVEs that cannot be immediately fixed
 # Format: CVE-XXXX or GHSA-XXXX
 
-# Add CVEs here with justification if needed
-# Example:
-# CVE-2024-XXXXX  # Reason for ignoring - planned fix in version X.Y.Z
+# perl-base is an essential Debian package.
+# Trivy currently reports no fixed version for these CVEs.
+# Do not remove perl-base because Debian marks it Essential: yes.
+
+CVE-2026-13221
+CVE-2026-42496
+CVE-2026-8376

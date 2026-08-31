@@ -1,33 +1,30 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.12-slim-trixie
 
-# Update OS packages early to patch vulnerabilities
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-    curl \
-    ca-certificates && \
-    apt-get autoremove -y && \
+        curl \
+        ca-certificates && \
+
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Create non-root user
 RUN useradd --create-home --shell /bin/bash appuser
 
 WORKDIR /app
 
-# Copy and install Python dependencies
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --no-cache-dir --upgrade \
+        pip \
+        setuptools \
+        wheel && \
+    python -m pip install --no-cache-dir -r requirements.txt
 
-# Copy application
 COPY app ./app
 
-# Set permissions
 RUN chown -R appuser:appuser /app
 
-# Use non-root user
 USER appuser
 
 EXPOSE 5000
