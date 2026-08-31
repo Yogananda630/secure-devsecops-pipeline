@@ -66,7 +66,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
-    name: Docker Build and Trivy Scan
+    name: Docker Build, Trivy Scan and Push
     runs-on: ubuntu-latest
 
     needs:
@@ -76,22 +76,39 @@ jobs:
 
     permissions:
       contents: read
+      packages: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Docker image
         run: |
           docker build \
-            -t secure-devsecops-app:${{ github.sha }} .
+            -t ghcr.io/${{ github.repository }}:${{ github.sha }} \
+            -t ghcr.io/${{ github.repository }}:latest \
+            .
 
       - name: Run Trivy vulnerability scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: secure-devsecops-app:${{ github.sha }}
+          image-ref: ghcr.io/${{ github.repository }}:${{ github.sha }}
           format: table
-          exit-code: "0"
+          exit-code: "1"
           ignore-unfixed: true
           vuln-type: os,library
           severity: CRITICAL,HIGH
+          skip-files: "**/pip/_vendor/bom.cdx.json"
+
+      - name: Push Docker image
+        if: github.event_name == 'push'
+        run: |
+          docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}:latest
