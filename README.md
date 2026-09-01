@@ -1,15 +1,26 @@
 # 🔐 Secure DevSecOps CI/CD Pipeline
 
-A security-focused CI/CD pipeline for a containerized web application.
+A security-focused CI/CD pipeline for a containerized Flask web application.
+
+This project demonstrates how security can be integrated into the complete software delivery lifecycle, from source-code testing to container vulnerability scanning and container registry publishing.
+
+---
 
 ## 📌 Project Overview
 
-This project demonstrates how DevSecOps practices can be integrated
-into the software development and deployment lifecycle.
+The pipeline automatically performs:
 
-The pipeline automatically performs application testing, static
-security analysis, secret detection, and container vulnerability
-scanning before the application can proceed toward deployment.
+- Application testing
+- Static Application Security Testing (SAST)
+- Secret detection
+- Docker image building
+- Container vulnerability scanning
+- Secure container registry publishing
+- Application health verification
+
+Security checks are executed before the Docker image is published.
+
+---
 
 ## 🎯 Objectives
 
@@ -17,17 +28,21 @@ scanning before the application can proceed toward deployment.
 - Detect insecure source-code patterns
 - Detect accidentally committed secrets
 - Scan Docker images for vulnerabilities
-- Containerize the application securely
-- Deploy the application to AWS
-- Apply AWS IAM least-privilege principles
+- Build a hardened container image
+- Publish verified images to GitHub Container Registry
+- Prepare the application for cloud deployment
+- Apply least-privilege security principles
 - Implement secure CI/CD authentication
+
+---
 
 ## 🛠️ Technology Stack
 
 ### Application
 
-- Python
+- Python 3.12
 - Flask
+- Gunicorn
 
 ### Version Control
 
@@ -49,13 +64,17 @@ scanning before the application can proceed toward deployment.
 - Docker
 - Docker Compose
 
+### Container Registry
+
+- GitHub Container Registry (GHCR)
+
 ### Cloud
 
-- AWS EC2
-- Amazon ECR
-- AWS IAM
+- AWS
 
-## 🔄 CI/CD Workflow
+---
+
+## 🔄 DevSecOps Pipeline
 
 ```text
 Developer
@@ -70,22 +89,20 @@ GitHub Actions
     |
     +----> Semgrep SAST
     |
-    +----> Gitleaks Secret Scan
-    |
-    +----> Trivy Container Scan
+    +----> Gitleaks Secret Detection
     |
     v
-Security Gate
+Docker Build
+    |
+    v
+Trivy Vulnerability Scan
     |
     +-------- FAIL --------> STOP
     |
-    +-------- PASS --------> Docker Build
+    +-------- PASS --------> GHCR
                                   |
                                   v
-                              AWS ECR
+                           Verified Container
                                   |
                                   v
-                              AWS EC2
-                                  |
-                                  v
-                            Application
+                            Cloud Deployment
