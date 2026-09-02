@@ -3,148 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure DevSecOps Pipeline</title>
+
+    <title>Secure DevSecOps CI/CD Pipeline</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background: #07111f;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .container {
-            max-width: 1000px;
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
-            padding: 70px 20px;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 45px;
         }
 
         .badge {
             display: inline-block;
-            padding: 8px 14px;
-            border-radius: 20px;
-            background: #1e293b;
-            color: #38bdf8;
-            font-weight: bold;
-            font-size: 14px;
+            padding: 8px 16px;
+            border: 1px solid #06b6d4;
+            border-radius: 30px;
+            color: #67e8f9;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        h1 {
-            font-size: 52px;
-            margin: 20px 0 15px;
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
         }
 
-        .intro {
-            color: #cbd5e1;
-            font-size: 19px;
-            line-height: 1.7;
-            max-width: 850px;
+        .hero h1 span {
+            color: #22d3ee;
         }
 
-        .grid {
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            color: #a8b3c2;
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #06b6d4;
+            color: #06111d;
+        }
+
+        .secondary {
+            border: 1px solid #334155;
+            background: #111c2d;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 35px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        /* CARDS */
+
+        .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-            margin-top: 45px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background: #1e293b;
-            padding: 25px;
+            background: #101c2d;
+            border: 1px solid #243449;
             border-radius: 14px;
-            border: 1px solid #334155;
-            transition: transform 0.2s ease;
+            padding: 25px;
+            transition: 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            border-color: #06b6d4;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
         }
 
         .card h3 {
-            margin-top: 0;
-            color: #38bdf8;
-            font-size: 21px;
+            margin-bottom: 8px;
+            font-size: 20px;
         }
 
         .card p {
-            color: #cbd5e1;
-            font-size: 16px;
-            line-height: 1.6;
+            color: #94a3b8;
+            font-size: 14px;
         }
 
-        .status-section {
-            margin-top: 55px;
+        .card-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #22d3ee;
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        .status-section h2 {
-            font-size: 30px;
-            margin-bottom: 22px;
+        /* STATUS */
+
+        .status-box {
+            background: #101c2d;
+            border: 1px solid #243449;
+            border-radius: 14px;
+            padding: 25px;
+            max-width: 850px;
+            margin: auto;
         }
 
-        .status-card {
-            background: #1e293b;
-            padding: 19px 24px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #334155;
+        .status {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 5px;
+            border-bottom: 1px solid #243449;
+        }
+
+        .status:last-child {
+            border-bottom: none;
         }
 
         .status-name {
-            font-size: 17px;
-            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .status-success {
-            color: #22c55e;
-            font-weight: bold;
+        .success {
+            color: #4ade80;
+            font-weight: 700;
         }
+
+        /* PIPELINE */
 
         .pipeline {
-            margin-top: 55px;
-            padding: 30px;
-            background: #1e293b;
-            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .step {
+            background: #111c2d;
             border: 1px solid #334155;
-        }
-
-        .pipeline h2 {
-            margin-top: 0;
-            color: #38bdf8;
-            font-size: 28px;
-        }
-
-        .pipeline-flow {
-            color: #cbd5e1;
-            font-size: 17px;
-            line-height: 2;
-            white-space: pre-line;
-        }
-
-        .footer {
-            margin-top: 50px;
+            padding: 15px 18px;
+            border-radius: 10px;
             text-align: center;
+            min-width: 125px;
+        }
+
+        .step strong {
+            display: block;
+            color: #22d3ee;
+            font-size: 14px;
+        }
+
+        .step small {
+            color: #94a3b8;
+        }
+
+        .arrow {
+            color: #64748b;
+            font-size: 22px;
+        }
+
+        /* ARCHITECTURE */
+
+        .architecture {
+            background: #050b14;
+            border: 1px solid #243449;
+            border-radius: 14px;
+            padding: 25px;
+            overflow-x: auto;
+            color: #67e8f9;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        /* RECRUITER DEMO */
+
+        .demo-box {
+            background: linear-gradient(135deg, #101c2d, #0c1727);
+            border: 1px solid #06b6d4;
+            border-radius: 14px;
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .demo-box h3 {
+            margin-bottom: 15px;
+            color: #22d3ee;
+        }
+
+        .demo-box ol {
+            padding-left: 22px;
+            color: #cbd5e1;
+        }
+
+        .demo-box li {
+            margin: 8px 0;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 1px solid #1e293b;
             color: #64748b;
             font-size: 14px;
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 38px;
+        footer strong {
+            color: #22d3ee;
+        }
+
+        @media (max-width: 700px) {
+
+            .hero h1 {
+                font-size: 34px;
             }
 
-            .container {
-                padding: 45px 18px;
+            .status {
+                gap: 10px;
             }
 
-            .status-card {
-                padding: 17px;
+            .arrow {
+                display: none;
             }
         }
     </style>
@@ -152,168 +306,556 @@
 
 <body>
 
-<div class="container">
+    <!-- HERO -->
 
-    <span class="badge">🔐 DEVSECOPS PROJECT</span>
+    <section class="hero">
 
-    <h1>Secure CI/CD Pipeline</h1>
+        <div class="badge">
+            🔐 DEVSECOPS PROJECT
+        </div>
 
-    <p class="intro">
-        A security-focused CI/CD pipeline that automatically analyzes
-        source code, detects secrets, scans dependencies and Docker
-        images before deploying applications to AWS.
-    </p>
+        <h1>
+            Secure <span>CI/CD Pipeline</span>
+        </h1>
+
+        <p>
+            A production-style DevSecOps pipeline that automatically tests,
+            scans, builds, secures and deploys a Flask application using
+            GitHub Actions, Docker, Trivy, Amazon ECR and AWS EC2.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="http://65.0.76.103:5000"
+                target="_blank"
+                class="btn primary">
+                🚀 Live Application
+            </a>
+
+            <a
+                href="https://github.com/Yogananda630/secure-devsecops-pipeline"
+                target="_blank"
+                class="btn secondary">
+                💻 GitHub Repository
+            </a>
+
+        </div>
+
+    </section>
 
 
-    <!-- DevSecOps Tools -->
+    <!-- DEVSECOPS TOOLS -->
 
-    <div class="grid">
+    <section class="section">
 
-        <div class="card">
-            <h3>🐙 GitHub</h3>
-            <p>
-                Version control and source management for the project.
+        <div class="container">
+
+            <h2 class="section-title">
+                🛡️ DevSecOps Security Stack
+            </h2>
+
+            <p class="section-subtitle">
+                Click each tool to demonstrate how security is integrated
+                into the CI/CD pipeline.
             </p>
+
+
+            <div class="cards">
+
+                <!-- GitHub -->
+
+                <a
+                    href="https://github.com/Yogananda630/secure-devsecops-pipeline"
+                    target="_blank"
+                    class="card">
+
+                    <div class="card-icon">🐙</div>
+
+                    <h3>GitHub</h3>
+
+                    <p>
+                        Source code management and version control.
+                        Developers push code to the repository.
+                    </p>
+
+                    <span class="card-link">
+                        View Repository →
+                    </span>
+
+                </a>
+
+
+                <!-- Semgrep -->
+
+                <a
+                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+                    target="_blank"
+                    class="card">
+
+                    <div class="card-icon">🔎</div>
+
+                    <h3>Semgrep</h3>
+
+                    <p>
+                        Static Application Security Testing (SAST)
+                        detects insecure coding patterns.
+                    </p>
+
+                    <span class="card-link">
+                        View Security Scan →
+                    </span>
+
+                </a>
+
+
+                <!-- Gitleaks -->
+
+                <a
+                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+                    target="_blank"
+                    class="card">
+
+                    <div class="card-icon">🔑</div>
+
+                    <h3>Gitleaks</h3>
+
+                    <p>
+                        Scans source code and Git history for
+                        accidentally exposed secrets.
+                    </p>
+
+                    <span class="card-link">
+                        View Secret Scan →
+                    </span>
+
+                </a>
+
+
+                <!-- Trivy -->
+
+                <a
+                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+                    target="_blank"
+                    class="card">
+
+                    <div class="card-icon">🛡️</div>
+
+                    <h3>Trivy</h3>
+
+                    <p>
+                        Container vulnerability scanner that checks
+                        Docker images for known vulnerabilities.
+                    </p>
+
+                    <span class="card-link">
+                        View Vulnerability Scan →
+                    </span>
+
+                </a>
+
+
+                <!-- Docker -->
+
+                <a
+                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+                    target="_blank"
+                    class="card">
+
+                    <div class="card-icon">🐳</div>
+
+                    <h3>Docker</h3>
+
+                    <p>
+                        Packages the Flask application and dependencies
+                        into a portable container image.
+                    </p>
+
+                    <span class="card-link">
+                        View Build Pipeline →
+                    </span>
+
+                </a>
+
+
+                <!-- AWS -->
+
+                <a
+                    href="http://65.0.76.103:5000"
+                    target="_blank"
+                    class="card">
+
+                    <div class="card-icon">☁️</div>
+
+                    <h3>AWS</h3>
+
+                    <p>
+                        Amazon ECR stores the container image and
+                        EC2 runs the production application.
+                    </p>
+
+                    <span class="card-link">
+                        Open Deployment →
+                    </span>
+
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>🛡️ Semgrep</h3>
-            <p>
-                Static application security testing for detecting
-                insecure coding patterns.
+    </section>
+
+
+    <!-- SECURITY STATUS -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                🚀 CI/CD Security Status
+            </h2>
+
+            <p class="section-subtitle">
+                Automated checks executed by GitHub Actions
             </p>
+
+
+            <div class="status-box">
+
+                <div class="status">
+
+                    <div class="status-name">
+                        🧪 Automated Tests
+                    </div>
+
+                    <div class="success">
+                        ✅ PASS
+                    </div>
+
+                </div>
+
+
+                <div class="status">
+
+                    <div class="status-name">
+                        🔎 Semgrep SAST
+                    </div>
+
+                    <div class="success">
+                        ✅ PASS
+                    </div>
+
+                </div>
+
+
+                <div class="status">
+
+                    <div class="status-name">
+                        🔑 Gitleaks
+                    </div>
+
+                    <div class="success">
+                        ✅ PASS
+                    </div>
+
+                </div>
+
+
+                <div class="status">
+
+                    <div class="status-name">
+                        🐳 Docker Build
+                    </div>
+
+                    <div class="success">
+                        ✅ PASS
+                    </div>
+
+                </div>
+
+
+                <div class="status">
+
+                    <div class="status-name">
+                        🛡️ Trivy Container Scan
+                    </div>
+
+                    <div class="success">
+                        ✅ PASS
+                    </div>
+
+                </div>
+
+
+                <div class="status">
+
+                    <div class="status-name">
+                        ☁️ AWS Deployment
+                    </div>
+
+                    <div class="success">
+                        ✅ DEPLOYED
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>🔑 Gitleaks</h3>
-            <p>
-                Detects accidentally committed secrets, credentials
-                and sensitive tokens.
+    </section>
+
+
+    <!-- PIPELINE -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                🔄 CI/CD Pipeline Flow
+            </h2>
+
+            <p class="section-subtitle">
+                From developer commit to production deployment
             </p>
+
+
+            <div class="pipeline">
+
+                <div class="step">
+                    👨‍💻
+                    <strong>Developer</strong>
+                    <small>Code Change</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    🐙
+                    <strong>GitHub</strong>
+                    <small>Push Code</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    ⚙️
+                    <strong>Actions</strong>
+                    <small>CI/CD</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    🔎
+                    <strong>Security</strong>
+                    <small>Scan</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    🐳
+                    <strong>Docker</strong>
+                    <small>Build Image</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    📦
+                    <strong>Amazon ECR</strong>
+                    <small>Store Image</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    ☁️
+                    <strong>EC2</strong>
+                    <small>Deploy</small>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    🚀
+                    <strong>Live App</strong>
+                    <small>Production</small>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>🔍 Trivy</h3>
-            <p>
-                Scans Docker container images for known
-                HIGH and CRITICAL vulnerabilities.
+    </section>
+
+
+    <!-- ARCHITECTURE -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                🏗️ Architecture
+            </h2>
+
+            <p class="section-subtitle">
+                Secure automated deployment architecture
             </p>
-        </div>
-
-        <div class="card">
-            <h3>🐳 Docker</h3>
-            <p>
-                Packages the application into a portable
-                and reproducible container.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>☁️ AWS</h3>
-            <p>
-                Amazon ECR stores the container image and
-                EC2 runs the deployed application.
-            </p>
-        </div>
-
-    </div>
 
 
-    <!-- CI/CD Security Status -->
+            <div class="architecture">
 
-    <div class="status-section">
-
-        <h2>🚀 CI/CD Security Status</h2>
-
-        <div class="status-card">
-            <span class="status-name">
-                Automated Tests
-            </span>
-            <span class="status-success">
-                ✅ PASSED
-            </span>
-        </div>
-
-        <div class="status-card">
-            <span class="status-name">
-                Semgrep Security Scan
-            </span>
-            <span class="status-success">
-                ✅ PASSED
-            </span>
-        </div>
-
-        <div class="status-card">
-            <span class="status-name">
-                Gitleaks Secret Scan
-            </span>
-            <span class="status-success">
-                ✅ PASSED
-            </span>
-        </div>
-
-        <div class="status-card">
-            <span class="status-name">
-                Docker Build
-            </span>
-            <span class="status-success">
-                ✅ PASSED
-            </span>
-        </div>
-
-        <div class="status-card">
-            <span class="status-name">
-                Trivy Container Scan
-            </span>
-            <span class="status-success">
-                ✅ PASSED
-            </span>
-        </div>
-
-        <div class="status-card">
-            <span class="status-name">
-                AWS Deployment
-            </span>
-            <span class="status-success">
-                ✅ DEPLOYED
-            </span>
-        </div>
-
-    </div>
-
-
-    <!-- Pipeline Flow -->
-
-    <div class="pipeline">
-
-        <h2>🔄 Pipeline Flow</h2>
-
-        <div class="pipeline-flow">
-GitHub
-↓
+Developer
+    │
+    │ git push
+    ▼
+GitHub Repository
+    │
+    ▼
 GitHub Actions
-↓
-Semgrep + Gitleaks
-↓
-Docker Build
-↓
-Trivy Security Scan
-↓
-Amazon ECR
-↓
-AWS EC2
-↓
-Secure Flask Application
+    │
+    ├── Automated Tests
+    │
+    ├── Semgrep SAST
+    │
+    ├── Gitleaks
+    │
+    ├── Docker Build
+    │
+    └── Trivy Security Scan
+             │
+             ▼
+       Amazon ECR
+             │
+             │ Pull Image
+             ▼
+          AWS EC2
+             │
+             ▼
+       Docker Container
+             │
+             ▼
+       Flask Application
+             │
+             ▼
+       🌐 Live Website
+
+            </div>
+
         </div>
 
-    </div>
+    </section>
 
 
-    <div class="footer">
-        Secure DevSecOps Pipeline • GitHub Actions • Docker • AWS
-    </div>
+    <!-- RECRUITER DEMO -->
 
-</div>
+    <section class="section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                🎯 Recruiter Demo Flow
+            </h2>
+
+            <p class="section-subtitle">
+                A complete practical demonstration of the project
+            </p>
+
+
+            <div class="demo-box">
+
+                <h3>
+                    How I demonstrate this project
+                </h3>
+
+                <ol>
+
+                    <li>
+                        Show the GitHub repository and project structure.
+                    </li>
+
+                    <li>
+                        Open GitHub Actions and explain the CI/CD workflow.
+                    </li>
+
+                    <li>
+                        Demonstrate automated tests.
+                    </li>
+
+                    <li>
+                        Explain Semgrep SAST security scanning.
+                    </li>
+
+                    <li>
+                        Demonstrate Gitleaks secret detection.
+                    </li>
+
+                    <li>
+                        Explain Docker image creation.
+                    </li>
+
+                    <li>
+                        Demonstrate Trivy container vulnerability scanning.
+                    </li>
+
+                    <li>
+                        Show Amazon ECR where the Docker image is stored.
+                    </li>
+
+                    <li>
+                        Show AWS EC2 where the container is deployed.
+                    </li>
+
+                    <li>
+                        Open the live Flask application.
+                    </li>
+
+                    <li>
+                        Make a small code change and push it to GitHub.
+                    </li>
+
+                    <li>
+                        Show the pipeline automatically running again.
+                    </li>
+
+                    <li>
+                        Finally demonstrate the updated application running
+                        on AWS EC2.
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            🔐 <strong>Secure DevSecOps CI/CD Pipeline</strong>
+        </p>
+
+        <p>
+            GitHub • GitHub Actions • Semgrep • Gitleaks • Trivy • Docker •
+            Amazon ECR • AWS EC2
+        </p>
+
+        <p>
+            Built as a practical DevSecOps project
+        </p>
+
+    </footer>
 
 </body>
 </html>
