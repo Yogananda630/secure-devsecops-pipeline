@@ -4,25 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Secure DevSecOps CI/CD Pipeline</title>
+    <title>Secure CI/CD Pipeline | DevSecOps</title>
 
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: #07111f;
-            color: #ffffff;
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(6,182,212,0.10), transparent 28%),
+                radial-gradient(circle at 85% 20%, rgba(59,130,246,0.10), transparent 28%),
+                #080d18;
+            color: #f8fafc;
             line-height: 1.6;
         }
 
@@ -32,830 +52,1971 @@
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: min(1200px, 92%);
             margin: auto;
         }
 
-        /* HERO */
+        /* =========================
+           HEADER
+        ========================= */
 
-        .hero {
-            text-align: center;
-            padding: 70px 20px 45px;
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(8,13,24,0.88);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(148,163,184,0.12);
         }
 
-        .badge {
-            display: inline-block;
-            padding: 8px 16px;
-            border: 1px solid #06b6d4;
-            border-radius: 30px;
-            color: #67e8f9;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
+        .nav {
+            height: 72px;
 
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            color: #22d3ee;
-        }
-
-        .hero p {
-            max-width: 750px;
-            margin: auto;
-            color: #a8b3c2;
-            font-size: 17px;
-        }
-
-        .buttons {
-            margin-top: 28px;
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #06b6d4,
+                #3b82f6
+            );
+
+            color: white;
+
+            box-shadow:
+                0 0 25px rgba(6,182,212,0.25);
+        }
+
+        .brand span {
+            color: #06b6d4;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
         }
 
         .btn {
-            padding: 12px 22px;
-            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                135deg,
+                #06b6d4,
+                #2563eb
+            );
+
+            color: white;
+
+            box-shadow:
+                0 8px 25px rgba(6,182,212,0.18);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 30px rgba(6,182,212,0.30);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(148,163,184,0.25);
+            background: rgba(15,23,42,0.65);
+            color: #e2e8f0;
+        }
+
+        .btn-outline:hover {
+            border-color: #06b6d4;
+            color: #67e8f9;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 90px 0 70px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 12px;
+
+            border: 1px solid rgba(6,182,212,0.22);
+            border-radius: 50px;
+
+            background: rgba(6,182,212,0.07);
+
+            color: #67e8f9;
+
+            font-size: 12px;
             font-weight: 700;
-            transition: 0.3s;
+
+            letter-spacing: 1.2px;
         }
 
-        .primary {
-            background: #06b6d4;
-            color: #06111d;
+        .hero h1 {
+            margin-top: 20px;
+
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.02;
+
+            letter-spacing: -3px;
         }
 
-        .secondary {
-            border: 1px solid #334155;
-            background: #111c2d;
+        .hero h1 span {
+            background: linear-gradient(
+                90deg,
+                #22d3ee,
+                #3b82f6
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
+        .hero-description {
+            max-width: 650px;
+
+            margin-top: 24px;
+
+            color: #94a3b8;
+
+            font-size: 17px;
         }
 
-        /* SECTION */
+        .hero-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
 
-        .section {
+            margin-top: 28px;
+        }
+
+        .tech {
+            padding: 8px 13px;
+
+            border: 1px solid rgba(148,163,184,0.14);
+            border-radius: 8px;
+
+            background: rgba(15,23,42,0.7);
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Hero visual */
+
+        .hero-visual {
+            min-height: 380px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glow-circle {
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(6,182,212,0.20),
+                    transparent 65%
+                );
+
+            filter: blur(8px);
+        }
+
+        .devops-orbit {
+            position: relative;
+
+            width: 330px;
+            height: 220px;
+
+            border: 2px solid rgba(6,182,212,0.22);
+
+            border-radius: 50%;
+
+            transform: rotate(-12deg);
+
+            box-shadow:
+                0 0 50px rgba(6,182,212,0.08);
+        }
+
+        .devops-orbit::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 25px 65px;
+
+            border: 2px solid rgba(59,130,246,0.28);
+
+            border-radius: 50%;
+        }
+
+        .security-core {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 92px;
+            height: 92px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(
+                135deg,
+                #0e7490,
+                #1d4ed8
+            );
+
+            border: 5px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 0 40px rgba(6,182,212,0.35);
+
+            font-size: 34px;
+        }
+
+        .orbit-label {
+            position: absolute;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            background: rgba(15,23,42,0.90);
+
+            border: 1px solid rgba(148,163,184,0.18);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            transform: rotate(12deg);
+        }
+
+        .label-dev {
+            left: 8px;
+            top: 95px;
+            color: #67e8f9;
+        }
+
+        .label-ops {
+            right: 8px;
+            top: 95px;
+            color: #93c5fd;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
             padding: 35px 0;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
         }
 
-        .section-subtitle {
-            text-align: center;
-            color: #94a3b8;
-            margin-bottom: 30px;
-        }
-
-        /* CARDS */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #101c2d;
-            border: 1px solid #243449;
-            border-radius: 14px;
-            padding: 25px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            border-color: #06b6d4;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-icon {
-            font-size: 35px;
-            margin-bottom: 12px;
-        }
-
-        .card h3 {
-            margin-bottom: 8px;
-            font-size: 20px;
-        }
-
-        .card p {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        .card-link {
-            display: inline-block;
-            margin-top: 15px;
+        .section-title small {
             color: #22d3ee;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .section-title h2 {
+            margin-top: 5px;
+
+            font-size: 28px;
+            letter-spacing: -0.8px;
+        }
+
+        .section-title p {
+            margin-top: 5px;
+
+            color: #64748b;
             font-size: 14px;
-            font-weight: 700;
         }
 
-        /* STATUS */
+        /* =========================
+           TOOL CARDS
+        ========================= */
 
-        .status-box {
-            background: #101c2d;
-            border: 1px solid #243449;
+        .tools-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(6, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .tool-card {
+            min-height: 180px;
+
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+
+            border: 1px solid rgba(148,163,184,0.12);
+
             border-radius: 14px;
-            padding: 25px;
-            max-width: 850px;
-            margin: auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,23,42,0.96),
+                    rgba(10,17,30,0.96)
+                );
+
+            transition: 0.25s ease;
+
+            position: relative;
+            overflow: hidden;
         }
 
-        .status {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5px;
-            border-bottom: 1px solid #243449;
+        .tool-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            top: 0;
+
+            height: 2px;
+
+            background: linear-gradient(
+                90deg,
+                #06b6d4,
+                #3b82f6
+            );
+
+            opacity: 0.8;
         }
 
-        .status:last-child {
-            border-bottom: none;
+        .tool-card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(34,211,238,0.30);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.25);
         }
 
-        .status-name {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .tool-icon {
+            width: 45px;
+            height: 45px;
 
-        .success {
-            color: #4ade80;
-            font-weight: 700;
-        }
-
-        /* PIPELINE */
-
-        .pipeline {
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
+
+            border-radius: 12px;
+
+            background: rgba(30,41,59,0.8);
+
+            font-size: 21px;
+
+            color: #67e8f9;
+        }
+
+        .tool-card h3 {
+            margin-top: 17px;
+
+            font-size: 16px;
+        }
+
+        .tool-card p {
+            margin-top: 5px;
+
+            color: #64748b;
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .status {
+            margin-top: auto;
+
+            padding-top: 15px;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            color: #4ade80;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #4ade80;
+
+            box-shadow:
+                0 0 10px rgba(74,222,128,0.6);
+        }
+
+        /* =========================
+           PIPELINE
+        ========================= */
+
+        .pipeline-panel {
+            padding: 28px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,23,42,0.96),
+                    rgba(9,15,27,0.98)
+                );
+
+            border: 1px solid rgba(148,163,184,0.13);
+
+            overflow-x: auto;
+        }
+
+        .pipeline {
+            min-width: 1050px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             gap: 10px;
-            margin-top: 30px;
         }
 
-        .step {
-            background: #111c2d;
-            border: 1px solid #334155;
-            padding: 15px 18px;
-            border-radius: 10px;
+        .pipeline-step {
+            flex: 0 0 auto;
+
+            width: 105px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
             text-align: center;
-            min-width: 125px;
         }
 
-        .step strong {
-            display: block;
-            color: #22d3ee;
-            font-size: 14px;
+        .pipeline-icon {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #111c31;
+
+            border: 1px solid rgba(34,211,238,0.20);
+
+            color: #67e8f9;
+
+            font-size: 20px;
+
+            box-shadow:
+                0 0 20px rgba(6,182,212,0.05);
         }
 
-        .step small {
-            color: #94a3b8;
+        .pipeline-step strong {
+            margin-top: 10px;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+        }
+
+        .pipeline-step span {
+            margin-top: 2px;
+
+            color: #64748b;
+
+            font-size: 9px;
         }
 
         .arrow {
-            color: #64748b;
-            font-size: 22px;
+            flex: 0 0 auto;
+
+            color: #22d3ee;
+
+            font-size: 17px;
+
+            opacity: 0.7;
         }
 
-        /* ARCHITECTURE */
+        /* =========================
+           ARCHITECTURE
+        ========================= */
 
-        .architecture {
-            background: #050b14;
-            border: 1px solid #243449;
-            border-radius: 14px;
-            padding: 25px;
+        .architecture-wrapper {
+            padding: 20px;
+
+            border-radius: 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(6,182,212,0.05),
+                    transparent 60%
+                ),
+                #0b1220;
+
+            border: 1px solid rgba(148,163,184,0.13);
+
             overflow-x: auto;
-            color: #67e8f9;
-            font-family: monospace;
-            font-size: 14px;
         }
 
-        /* RECRUITER DEMO */
+        .architecture-svg {
+            display: block;
 
-        .demo-box {
-            background: linear-gradient(135deg, #101c2d, #0c1727);
-            border: 1px solid #06b6d4;
+            width: 100%;
+            min-width: 1050px;
+
+            height: auto;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-panel {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .status-card {
+            padding: 22px;
+
             border-radius: 14px;
-            padding: 30px;
-            max-width: 900px;
-            margin: auto;
+
+            border: 1px solid rgba(148,163,184,0.12);
+
+            background: rgba(15,23,42,0.75);
+
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
         }
 
-        .demo-box h3 {
-            margin-bottom: 15px;
+        .status-card-icon {
+            width: 45px;
+            height: 45px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: rgba(6,182,212,0.08);
+
             color: #22d3ee;
         }
 
-        .demo-box ol {
-            padding-left: 22px;
-            color: #cbd5e1;
+        .status-card h4 {
+            font-size: 13px;
         }
 
-        .demo-box li {
-            margin: 8px 0;
+        .status-card p {
+            margin-top: 3px;
+
+            color: #64748b;
+
+            font-size: 11px;
         }
 
-        /* FOOTER */
+        .online {
+            color: #4ade80 !important;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
+            margin-top: 60px;
+
+            padding: 30px 0;
+
+            border-top: 1px solid rgba(148,163,184,0.10);
+
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
-            border-top: 1px solid #1e293b;
-            color: #64748b;
-            font-size: 14px;
+
+            color: #475569;
+
+            font-size: 12px;
         }
 
-        footer strong {
+        footer span {
             color: #22d3ee;
         }
 
-        @media (max-width: 700px) {
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                min-height: 300px;
+            }
+
+            .tools-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .nav {
+                height: auto;
+                padding: 15px 0;
+
+                gap: 15px;
+
+                flex-direction: column;
+            }
+
+            .nav-buttons {
+                width: 100%;
+            }
+
+            .nav-buttons .btn {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
 
             .hero h1 {
-                font-size: 34px;
+                letter-spacing: -2px;
             }
 
-            .status {
-                gap: 10px;
+            .tools-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .arrow {
-                display: none;
+            .status-panel {
+                grid-template-columns: 1fr;
             }
+
+            .devops-orbit {
+                width: 290px;
+                height: 190px;
+            }
+
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- HERO -->
+<!-- =========================
+     HEADER
+========================= -->
 
-    <section class="hero">
+<header>
 
-        <div class="badge">
-            🔐 DEVSECOPS PROJECT
-        </div>
+    <div class="container nav">
 
-        <h1>
-            Secure <span>CI/CD Pipeline</span>
-        </h1>
+        <a href="#" class="brand">
 
-        <p>
-            A production-style DevSecOps pipeline that automatically tests,
-            scans, builds, secures and deploys a Flask application using
-            GitHub Actions, Docker, Trivy, Amazon ECR and AWS EC2.
-        </p>
+            <div class="brand-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
 
-        <div class="buttons">
+            Secure <span>CI/CD</span>
+
+        </a>
+
+        <div class="nav-buttons">
 
             <a
                 href="http://65.0.76.103:5000"
+                class="btn btn-primary"
                 target="_blank"
-                class="btn primary">
-                🚀 Live Application
+            >
+                <i class="fa-solid fa-globe"></i>
+                Live Application
             </a>
 
             <a
                 href="https://github.com/Yogananda630/secure-devsecops-pipeline"
+                class="btn btn-outline"
                 target="_blank"
-                class="btn secondary">
-                💻 GitHub Repository
+            >
+                <i class="fa-brands fa-github"></i>
+                GitHub Repository
             </a>
 
         </div>
 
-    </section>
+    </div>
+
+</header>
 
 
-    <!-- DEVSECOPS TOOLS -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <section class="section">
+<main>
 
-        <div class="container">
+<section class="hero">
 
-            <h2 class="section-title">
-                🛡️ DevSecOps Security Stack
-            </h2>
+    <div class="container hero-grid">
 
-            <p class="section-subtitle">
-                Click each tool to demonstrate how security is integrated
-                into the CI/CD pipeline.
+        <div>
+
+            <div class="eyebrow">
+
+                <i class="fa-solid fa-lock"></i>
+
+                DEVSECOPS • AUTOMATION • CLOUD SECURITY
+
+            </div>
+
+            <h1>
+                Secure CI/CD
+                <br>
+                <span>Pipeline</span>
+            </h1>
+
+            <p class="hero-description">
+
+                An end-to-end DevSecOps pipeline that automates
+                testing, security scanning, containerization,
+                vulnerability detection and deployment using
+                GitHub Actions, Docker and AWS.
+
             </p>
 
+            <div class="hero-tech">
 
-            <div class="cards">
-
-                <!-- GitHub -->
-
-                <a
-                    href="https://github.com/Yogananda630/secure-devsecops-pipeline"
-                    target="_blank"
-                    class="card">
-
-                    <div class="card-icon">🐙</div>
-
-                    <h3>GitHub</h3>
-
-                    <p>
-                        Source code management and version control.
-                        Developers push code to the repository.
-                    </p>
-
-                    <span class="card-link">
-                        View Repository →
-                    </span>
-
-                </a>
-
-
-                <!-- Semgrep -->
-
-                <a
-                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
-                    target="_blank"
-                    class="card">
-
-                    <div class="card-icon">🔎</div>
-
-                    <h3>Semgrep</h3>
-
-                    <p>
-                        Static Application Security Testing (SAST)
-                        detects insecure coding patterns.
-                    </p>
-
-                    <span class="card-link">
-                        View Security Scan →
-                    </span>
-
-                </a>
-
-
-                <!-- Gitleaks -->
-
-                <a
-                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
-                    target="_blank"
-                    class="card">
-
-                    <div class="card-icon">🔑</div>
-
-                    <h3>Gitleaks</h3>
-
-                    <p>
-                        Scans source code and Git history for
-                        accidentally exposed secrets.
-                    </p>
-
-                    <span class="card-link">
-                        View Secret Scan →
-                    </span>
-
-                </a>
-
-
-                <!-- Trivy -->
-
-                <a
-                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
-                    target="_blank"
-                    class="card">
-
-                    <div class="card-icon">🛡️</div>
-
-                    <h3>Trivy</h3>
-
-                    <p>
-                        Container vulnerability scanner that checks
-                        Docker images for known vulnerabilities.
-                    </p>
-
-                    <span class="card-link">
-                        View Vulnerability Scan →
-                    </span>
-
-                </a>
-
-
-                <!-- Docker -->
-
-                <a
-                    href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
-                    target="_blank"
-                    class="card">
-
-                    <div class="card-icon">🐳</div>
-
-                    <h3>Docker</h3>
-
-                    <p>
-                        Packages the Flask application and dependencies
-                        into a portable container image.
-                    </p>
-
-                    <span class="card-link">
-                        View Build Pipeline →
-                    </span>
-
-                </a>
-
-
-                <!-- AWS -->
-
-                <a
-                    href="http://65.0.76.103:5000"
-                    target="_blank"
-                    class="card">
-
-                    <div class="card-icon">☁️</div>
-
-                    <h3>AWS</h3>
-
-                    <p>
-                        Amazon ECR stores the container image and
-                        EC2 runs the production application.
-                    </p>
-
-                    <span class="card-link">
-                        Open Deployment →
-                    </span>
-
-                </a>
+                <div class="tech">GitHub Actions</div>
+                <div class="tech">SAST</div>
+                <div class="tech">Secrets Detection</div>
+                <div class="tech">Container Security</div>
+                <div class="tech">Docker</div>
+                <div class="tech">AWS</div>
 
             </div>
 
         </div>
 
-    </section>
 
+        <!-- DEVOPS VISUAL -->
 
-    <!-- SECURITY STATUS -->
+        <div class="hero-visual">
 
-    <section class="section">
+            <div class="glow-circle"></div>
 
-        <div class="container">
+            <div class="devops-orbit">
 
-            <h2 class="section-title">
-                🚀 CI/CD Security Status
-            </h2>
-
-            <p class="section-subtitle">
-                Automated checks executed by GitHub Actions
-            </p>
-
-
-            <div class="status-box">
-
-                <div class="status">
-
-                    <div class="status-name">
-                        🧪 Automated Tests
-                    </div>
-
-                    <div class="success">
-                        ✅ PASS
-                    </div>
-
+                <div class="orbit-label label-dev">
+                    <i class="fa-solid fa-code"></i>
+                    DEV
                 </div>
 
-
-                <div class="status">
-
-                    <div class="status-name">
-                        🔎 Semgrep SAST
-                    </div>
-
-                    <div class="success">
-                        ✅ PASS
-                    </div>
-
+                <div class="orbit-label label-ops">
+                    <i class="fa-solid fa-server"></i>
+                    OPS
                 </div>
 
-
-                <div class="status">
-
-                    <div class="status-name">
-                        🔑 Gitleaks
-                    </div>
-
-                    <div class="success">
-                        ✅ PASS
-                    </div>
-
-                </div>
-
-
-                <div class="status">
-
-                    <div class="status-name">
-                        🐳 Docker Build
-                    </div>
-
-                    <div class="success">
-                        ✅ PASS
-                    </div>
-
-                </div>
-
-
-                <div class="status">
-
-                    <div class="status-name">
-                        🛡️ Trivy Container Scan
-                    </div>
-
-                    <div class="success">
-                        ✅ PASS
-                    </div>
-
-                </div>
-
-
-                <div class="status">
-
-                    <div class="status-name">
-                        ☁️ AWS Deployment
-                    </div>
-
-                    <div class="success">
-                        ✅ DEPLOYED
-                    </div>
-
+                <div class="security-core">
+                    <i class="fa-solid fa-shield-halved"></i>
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
 
-    <!-- PIPELINE -->
 
-    <section class="section">
+<!-- =========================
+     SECURITY / DEVOPS TOOLS
+========================= -->
 
-        <div class="container">
+<section>
 
-            <h2 class="section-title">
-                🔄 CI/CD Pipeline Flow
-            </h2>
+<div class="container">
 
-            <p class="section-subtitle">
-                From developer commit to production deployment
-            </p>
+    <div class="section-title">
 
+        <small>TECHNOLOGY STACK</small>
 
-            <div class="pipeline">
-
-                <div class="step">
-                    👨‍💻
-                    <strong>Developer</strong>
-                    <small>Code Change</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    🐙
-                    <strong>GitHub</strong>
-                    <small>Push Code</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    ⚙️
-                    <strong>Actions</strong>
-                    <small>CI/CD</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    🔎
-                    <strong>Security</strong>
-                    <small>Scan</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    🐳
-                    <strong>Docker</strong>
-                    <small>Build Image</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    📦
-                    <strong>Amazon ECR</strong>
-                    <small>Store Image</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    ☁️
-                    <strong>EC2</strong>
-                    <small>Deploy</small>
-                </div>
-
-                <div class="arrow">→</div>
-
-                <div class="step">
-                    🚀
-                    <strong>Live App</strong>
-                    <small>Production</small>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ARCHITECTURE -->
-
-    <section class="section">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                🏗️ Architecture
-            </h2>
-
-            <p class="section-subtitle">
-                Secure automated deployment architecture
-            </p>
-
-
-            <div class="architecture">
-
-Developer
-    │
-    │ git push
-    ▼
-GitHub Repository
-    │
-    ▼
-GitHub Actions
-    │
-    ├── Automated Tests
-    │
-    ├── Semgrep SAST
-    │
-    ├── Gitleaks
-    │
-    ├── Docker Build
-    │
-    └── Trivy Security Scan
-             │
-             ▼
-       Amazon ECR
-             │
-             │ Pull Image
-             ▼
-          AWS EC2
-             │
-             ▼
-       Docker Container
-             │
-             ▼
-       Flask Application
-             │
-             ▼
-       🌐 Live Website
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- RECRUITER DEMO -->
-
-    <section class="section">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                🎯 Recruiter Demo Flow
-            </h2>
-
-            <p class="section-subtitle">
-                A complete practical demonstration of the project
-            </p>
-
-
-            <div class="demo-box">
-
-                <h3>
-                    How I demonstrate this project
-                </h3>
-
-                <ol>
-
-                    <li>
-                        Show the GitHub repository and project structure.
-                    </li>
-
-                    <li>
-                        Open GitHub Actions and explain the CI/CD workflow.
-                    </li>
-
-                    <li>
-                        Demonstrate automated tests.
-                    </li>
-
-                    <li>
-                        Explain Semgrep SAST security scanning.
-                    </li>
-
-                    <li>
-                        Demonstrate Gitleaks secret detection.
-                    </li>
-
-                    <li>
-                        Explain Docker image creation.
-                    </li>
-
-                    <li>
-                        Demonstrate Trivy container vulnerability scanning.
-                    </li>
-
-                    <li>
-                        Show Amazon ECR where the Docker image is stored.
-                    </li>
-
-                    <li>
-                        Show AWS EC2 where the container is deployed.
-                    </li>
-
-                    <li>
-                        Open the live Flask application.
-                    </li>
-
-                    <li>
-                        Make a small code change and push it to GitHub.
-                    </li>
-
-                    <li>
-                        Show the pipeline automatically running again.
-                    </li>
-
-                    <li>
-                        Finally demonstrate the updated application running
-                        on AWS EC2.
-                    </li>
-
-                </ol>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
+        <h2>Integrated DevSecOps Tools</h2>
 
         <p>
-            🔐 <strong>Secure DevSecOps CI/CD Pipeline</strong>
+            Security and deployment tools integrated into the CI/CD lifecycle.
         </p>
+
+    </div>
+
+
+    <div class="tools-grid">
+
+
+        <!-- GitHub -->
+
+        <a
+            href="https://github.com/Yogananda630/secure-devsecops-pipeline"
+            target="_blank"
+            class="tool-card"
+        >
+
+            <div class="tool-icon">
+                <i class="fa-brands fa-github"></i>
+            </div>
+
+            <h3>GitHub</h3>
+
+            <p>
+                Source code management and
+                version control.
+            </p>
+
+            <div class="status">
+                <div class="status-dot"></div>
+                INTEGRATED
+            </div>
+
+        </a>
+
+
+        <!-- Semgrep -->
+
+        <a
+            href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+            target="_blank"
+            class="tool-card"
+        >
+
+            <div class="tool-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <h3>Semgrep</h3>
+
+            <p>
+                Static Application Security
+                Testing (SAST).
+            </p>
+
+            <div class="status">
+                <div class="status-dot"></div>
+                SECURED
+            </div>
+
+        </a>
+
+
+        <!-- Gitleaks -->
+
+        <a
+            href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+            target="_blank"
+            class="tool-card"
+        >
+
+            <div class="tool-icon">
+                <i class="fa-solid fa-key"></i>
+            </div>
+
+            <h3>Gitleaks</h3>
+
+            <p>
+                Detects secrets and credentials
+                in source code.
+            </p>
+
+            <div class="status">
+                <div class="status-dot"></div>
+                PROTECTED
+            </div>
+
+        </a>
+
+
+        <!-- Trivy -->
+
+        <a
+            href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+            target="_blank"
+            class="tool-card"
+        >
+
+            <div class="tool-icon">
+                <i class="fa-solid fa-bug-slash"></i>
+            </div>
+
+            <h3>Trivy</h3>
+
+            <p>
+                Container and filesystem
+                vulnerability scanning.
+            </p>
+
+            <div class="status">
+                <div class="status-dot"></div>
+                SCANNED
+            </div>
+
+        </a>
+
+
+        <!-- Docker -->
+
+        <a
+            href="https://github.com/Yogananda630/secure-devsecops-pipeline/actions"
+            target="_blank"
+            class="tool-card"
+        >
+
+            <div class="tool-icon">
+                <i class="fa-brands fa-docker"></i>
+            </div>
+
+            <h3>Docker</h3>
+
+            <p>
+                Containerization for consistent
+                application deployments.
+            </p>
+
+            <div class="status">
+                <div class="status-dot"></div>
+                CONTAINERIZED
+            </div>
+
+        </a>
+
+
+        <!-- AWS -->
+
+        <a
+            href="http://65.0.76.103:5000"
+            target="_blank"
+            class="tool-card"
+        >
+
+            <div class="tool-icon">
+                <i class="fa-brands fa-aws"></i>
+            </div>
+
+            <h3>AWS</h3>
+
+            <p>
+                Cloud infrastructure and
+                application deployment.
+            </p>
+
+            <div class="status">
+                <div class="status-dot"></div>
+                DEPLOYED
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CI/CD PIPELINE
+========================= -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-title">
+
+        <small>CONTINUOUS DELIVERY</small>
+
+        <h2>CI/CD Pipeline Flow</h2>
 
         <p>
-            GitHub • GitHub Actions • Semgrep • Gitleaks • Trivy • Docker •
-            Amazon ECR • AWS EC2
+            Automated source-to-production workflow with security gates.
         </p>
+
+    </div>
+
+
+    <div class="pipeline-panel">
+
+        <div class="pipeline">
+
+
+            <!-- GitHub -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-brands fa-github"></i>
+                </div>
+
+                <strong>GitHub</strong>
+                <span>Source Code</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- Tests -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-solid fa-vial"></i>
+                </div>
+
+                <strong>Tests</strong>
+                <span>Automated Tests</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- Semgrep -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <strong>Semgrep</strong>
+                <span>SAST</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- Gitleaks -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+
+                <strong>Gitleaks</strong>
+                <span>Secrets Scan</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- Docker -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-brands fa-docker"></i>
+                </div>
+
+                <strong>Docker</strong>
+                <span>Build Image</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- Trivy -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-solid fa-bug-slash"></i>
+                </div>
+
+                <strong>Trivy</strong>
+                <span>Security Scan</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- ECR -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <strong>Amazon ECR</strong>
+                <span>Image Registry</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- EC2 -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-brands fa-aws"></i>
+                </div>
+
+                <strong>EC2</strong>
+                <span>Deployment</span>
+
+            </div>
+
+
+            <div class="arrow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+
+            <!-- Live -->
+
+            <div class="pipeline-step">
+
+                <div class="pipeline-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+
+                <strong>Live App</strong>
+                <span>Production</span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ARCHITECTURE
+========================= -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-title">
+
+        <small>SYSTEM DESIGN</small>
+
+        <h2>DevSecOps Architecture</h2>
 
         <p>
-            Built as a practical DevSecOps project
+            Secure application delivery from source code to AWS production.
         </p>
 
-    </footer>
+    </div>
+
+
+    <div class="architecture-wrapper">
+
+
+        <!--
+            Professional SVG architecture diagram.
+            It behaves like an image and scales with the page.
+        -->
+
+        <svg
+            class="architecture-svg"
+            viewBox="0 0 1200 520"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <defs>
+
+                <linearGradient
+                    id="blueGradient"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                >
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#2563eb"/>
+                </linearGradient>
+
+                <linearGradient
+                    id="securityGradient"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                >
+                    <stop offset="0%" stop-color="#0891b2"/>
+                    <stop offset="100%" stop-color="#1d4ed8"/>
+                </linearGradient>
+
+                <filter id="glow">
+                    <feGaussianBlur
+                        stdDeviation="5"
+                        result="blur"
+                    />
+
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+
+                <marker
+                    id="arrow"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="8"
+                    refY="3"
+                    orient="auto"
+                >
+                    <path
+                        d="M0,0 L0,6 L9,3 z"
+                        fill="#22d3ee"
+                    />
+                </marker>
+
+            </defs>
+
+
+            <!-- BACKGROUND -->
+
+            <rect
+                x="0"
+                y="0"
+                width="1200"
+                height="520"
+                rx="18"
+                fill="#0b1220"
+            />
+
+
+            <!-- =====================
+                 GITHUB
+            ====================== -->
+
+            <rect
+                x="55"
+                y="180"
+                width="170"
+                height="125"
+                rx="16"
+                fill="#101a2e"
+                stroke="#334155"
+            />
+
+            <circle
+                cx="140"
+                cy="218"
+                r="25"
+                fill="#111827"
+            />
+
+            <!-- GitHub icon-like mark -->
+
+            <text
+                x="140"
+                y="227"
+                text-anchor="middle"
+                font-size="27"
+                fill="white"
+            >
+                ◉
+            </text>
+
+            <text
+                x="140"
+                y="265"
+                text-anchor="middle"
+                font-size="16"
+                font-weight="700"
+                fill="#f8fafc"
+            >
+                GitHub
+            </text>
+
+            <text
+                x="140"
+                y="287"
+                text-anchor="middle"
+                font-size="11"
+                fill="#64748b"
+            >
+                Source Code
+            </text>
+
+
+            <!-- ARROW 1 -->
+
+            <line
+                x1="225"
+                y1="242"
+                x2="285"
+                y2="242"
+                stroke="#22d3ee"
+                stroke-width="2"
+                marker-end="url(#arrow)"
+            />
+
+
+            <!-- =====================
+                 GITHUB ACTIONS
+            ====================== -->
+
+            <rect
+                x="290"
+                y="150"
+                width="220"
+                height="185"
+                rx="18"
+                fill="#0f1b30"
+                stroke="#06b6d4"
+                stroke-opacity="0.35"
+            />
+
+            <text
+                x="400"
+                y="180"
+                text-anchor="middle"
+                font-size="12"
+                font-weight="800"
+                fill="#22d3ee"
+            >
+                CI/CD AUTOMATION
+            </text>
+
+
+            <!-- Test -->
+
+            <rect
+                x="315"
+                y="200"
+                width="80"
+                height="95"
+                rx="12"
+                fill="#111c31"
+            />
+
+            <text
+                x="355"
+                y="237"
+                text-anchor="middle"
+                font-size="25"
+                fill="#67e8f9"
+            >
+                ✓
+            </text>
+
+            <text
+                x="355"
+                y="264"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#f8fafc"
+            >
+                Tests
+            </text>
+
+            <text
+                x="355"
+                y="282"
+                text-anchor="middle"
+                font-size="9"
+                fill="#64748b"
+            >
+                Quality
+            </text>
+
+
+            <!-- Security -->
+
+            <rect
+                x="405"
+                y="200"
+                width="80"
+                height="95"
+                rx="12"
+                fill="#111c31"
+            />
+
+            <text
+                x="445"
+                y="237"
+                text-anchor="middle"
+                font-size="25"
+                fill="#22d3ee"
+            >
+                ♢
+            </text>
+
+            <text
+                x="445"
+                y="264"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#f8fafc"
+            >
+                Security
+            </text>
+
+            <text
+                x="445"
+                y="282"
+                text-anchor="middle"
+                font-size="9"
+                fill="#64748b"
+            >
+                SAST + Secrets
+            </text>
+
+
+            <!-- ARROW 2 -->
+
+            <line
+                x1="510"
+                y1="242"
+                x2="575"
+                y2="242"
+                stroke="#22d3ee"
+                stroke-width="2"
+                marker-end="url(#arrow)"
+            />
+
+
+            <!-- =====================
+                 DOCKER
+            ====================== -->
+
+            <rect
+                x="580"
+                y="180"
+                width="165"
+                height="125"
+                rx="16"
+                fill="#101a2e"
+                stroke="#3b82f6"
+                stroke-opacity="0.5"
+            />
+
+            <circle
+                cx="662"
+                cy="218"
+                r="25"
+                fill="#111827"
+            />
+
+            <text
+                x="662"
+                y="227"
+                text-anchor="middle"
+                font-size="22"
+                fill="#60a5fa"
+            >
+                ◈
+            </text>
+
+            <text
+                x="662"
+                y="265"
+                text-anchor="middle"
+                font-size="16"
+                font-weight="700"
+                fill="#f8fafc"
+            >
+                Docker
+            </text>
+
+            <text
+                x="662"
+                y="287"
+                text-anchor="middle"
+                font-size="11"
+                fill="#64748b"
+            >
+                Container Build
+            </text>
+
+
+            <!-- ARROW 3 -->
+
+            <line
+                x1="745"
+                y1="242"
+                x2="810"
+                y2="242"
+                stroke="#22d3ee"
+                stroke-width="2"
+                marker-end="url(#arrow)"
+            />
+
+
+            <!-- =====================
+                 AWS
+            ====================== -->
+
+            <rect
+                x="815"
+                y="100"
+                width="325"
+                height="285"
+                rx="22"
+                fill="#0d1729"
+                stroke="#3b82f6"
+                stroke-opacity="0.35"
+            />
+
+            <text
+                x="978"
+                y="130"
+                text-anchor="middle"
+                font-size="12"
+                font-weight="800"
+                fill="#60a5fa"
+            >
+                AWS CLOUD
+            </text>
+
+
+            <!-- ECR -->
+
+            <rect
+                x="840"
+                y="155"
+                width="125"
+                height="90"
+                rx="14"
+                fill="#111c31"
+                stroke="#334155"
+            />
+
+            <text
+                x="902"
+                y="190"
+                text-anchor="middle"
+                font-size="25"
+                fill="#60a5fa"
+            >
+                ▣
+            </text>
+
+            <text
+                x="902"
+                y="217"
+                text-anchor="middle"
+                font-size="13"
+                font-weight="700"
+                fill="#f8fafc"
+            >
+                Amazon ECR
+            </text>
+
+            <text
+                x="902"
+                y="234"
+                text-anchor="middle"
+                font-size="9"
+                fill="#64748b"
+            >
+                Container Registry
+            </text>
+
+
+            <!-- EC2 -->
+
+            <rect
+                x="985"
+                y="155"
+                width="125"
+                height="90"
+                rx="14"
+                fill="#111c31"
+                stroke="#334155"
+            />
+
+            <text
+                x="1047"
+                y="190"
+                text-anchor="middle"
+                font-size="25"
+                fill="#60a5fa"
+            >
+                ▤
+            </text>
+
+            <text
+                x="1047"
+                y="217"
+                text-anchor="middle"
+                font-size="13"
+                font-weight="700"
+                fill="#f8fafc"
+            >
+                EC2
+            </text>
+
+            <text
+                x="1047"
+                y="234"
+                text-anchor="middle"
+                font-size="9"
+                fill="#64748b"
+            >
+                Application Server
+            </text>
+
+
+            <!-- AWS security layer -->
+
+            <rect
+                x="840"
+                y="270"
+                width="270"
+                height="85"
+                rx="14"
+                fill="#0b2030"
+                stroke="#06b6d4"
+                stroke-opacity="0.30"
+            />
+
+            <text
+                x="975"
+                y="300"
+                text-anchor="middle"
+                font-size="12"
+                font-weight="700"
+                fill="#22d3ee"
+            >
+                SECURITY & ACCESS
+            </text>
+
+            <text
+                x="975"
+                y="324"
+                text-anchor="middle"
+                font-size="11"
+                fill="#94a3b8"
+            >
+                IAM • Security Groups • ECR Authentication
+            </text>
+
+            <text
+                x="975"
+                y="342"
+                text-anchor="middle"
+                font-size="9"
+                fill="#64748b"
+            >
+                Least privilege cloud deployment
+            </text>
+
+
+            <!-- =====================
+                 LIVE APP
+            ====================== -->
+
+            <line
+                x1="978"
+                y1="385"
+                x2="978"
+                y2="430"
+                stroke="#22d3ee"
+                stroke-width="2"
+                marker-end="url(#arrow)"
+            />
+
+            <rect
+                x="870"
+                y="430"
+                width="215"
+                height="60"
+                rx="14"
+                fill="url(#securityGradient)"
+                filter="url(#glow)"
+            />
+
+            <text
+                x="978"
+                y="457"
+                text-anchor="middle"
+                font-size="14"
+                font-weight="800"
+                fill="white"
+            >
+                LIVE APPLICATION
+            </text>
+
+            <text
+                x="978"
+                y="476"
+                text-anchor="middle"
+                font-size="9"
+                fill="#dbeafe"
+            >
+                Flask • Gunicorn • Port 5000
+            </text>
+
+
+            <!-- SECURITY BADGES -->
+
+            <text
+                x="600"
+                y="455"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="700"
+                fill="#475569"
+            >
+                SECURE • AUTOMATED • CONTAINERIZED • DEPLOYED
+            </text>
+
+        </svg>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SYSTEM STATUS
+========================= -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-title">
+
+        <small>DEPLOYMENT STATUS</small>
+
+        <h2>System Status</h2>
+
+    </div>
+
+
+    <div class="status-panel">
+
+
+        <div class="status-card">
+
+            <div class="status-card-icon">
+                <i class="fa-solid fa-server"></i>
+            </div>
+
+            <div>
+
+                <h4>EC2 Application</h4>
+
+                <p class="online">
+                    ● Online
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="status-card">
+
+            <div class="status-card-icon">
+                <i class="fa-solid fa-box"></i>
+            </div>
+
+            <div>
+
+                <h4>Container</h4>
+
+                <p class="online">
+                    ● Healthy
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="status-card">
+
+            <div class="status-card-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div>
+
+                <h4>Security Pipeline</h4>
+
+                <p class="online">
+                    ● Protected
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        Built with
+        <span>DevSecOps</span>
+        principles • GitHub Actions • Docker • AWS
+
+    </div>
+
+</footer>
 
 </body>
 </html>
